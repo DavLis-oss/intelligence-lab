@@ -2,7 +2,7 @@
 layout: post
 title: "409 E-commerce Sites Scanned. 60% are Invisible to AI."
 date: 2026-03-19
-author: "[Joelle]"
+author: "Joelle"
 category: "AI Audit"
 description: "Analysis of 409 global brands: 98.3% lack Product schema and 60% are invisible to LLM discovery phases."
 ---
@@ -50,6 +50,6 @@ This visibility crisis is not a future threat. It is a present reality. But ther
 
 ***
 
-**Author:** [Joelle]
+**Author:** Joelle
 **Strategic Insights @ AI Audit Scan**
 **[Run a Free AI Readiness Scan →](https://aiauditscan.com)**
