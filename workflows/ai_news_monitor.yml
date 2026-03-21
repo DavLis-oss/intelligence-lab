@@ -1,0 +1,36 @@
+name: AiAuditScan Intelligence Bot
+
+on:
+  schedule:
+    # Se lance toutes les 30 minutes
+    - cron: '*/30 * * * *'
+  workflow_dispatch: # Permet de le lancer manuellement pour tester
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install google-generativeai feedparser requests
+
+      - name: Run AI News Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/fetcher_gemini.py
+
+      - name: Commit and Push Drafts
+        run: |
+          git config --global user.name "AiAuditScan-Bot"
+          git config --global user.email "bot@aiauditscan.com"
+          git add _drafts/*
+          git commit -m "New AI Insight Drafted by Gemini" || echo "No changes to commit"
+          git push
