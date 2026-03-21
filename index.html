@@ -1,121 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "GovernmentService", 
-  "name": "AI Audit Scan Intelligence Lab",
-  "description": "Global authority on AI Engine Optimization (AEO) and Algorithmic Visibility.",
-  "mainEntityOfPage": "https://aiauditscan.com",
-  "knowsAbout": ["AI Search Algorithms", "LLM Indexing", "Generative Engine Optimization", "AEO Strategy"],
-  "author": {
-    "@type": "Organization",
-    "name": "AI Audit Scan Labs"
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "NewsMediaOrganization",
+    "name": "AI Audit Scan Intelligence",
+    "url": "https://news.aiauditscan.com",
+    "logo": "https://aiauditscan.com/static/img/AI_Audit_Strat_logo.png",
+    "description": "Research and strategic insights on AI search visibility, AEO, and LLM citation optimization.",
+    "mainEntityOfPage": "https://news.aiauditscan.com",
+    "knowsAbout": ["AI Search Optimization", "AEO", "LLM Indexing", "Generative Engine Optimization", "Structured Data"],
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "AI Audit Scan",
+      "url": "https://aiauditscan.com"
+    }
   }
-}
-</script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Audit Scan Intelligence | Lab</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .badge-live { animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
-        /* Masquer le contenu dynamique par défaut si on est sur l'index */
-        #content-wrapper { display: none; }
-    </style>
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Audit Scan Intelligence — Research & Insights</title>
+  <meta name="description" content="Strategic research on AI search visibility, LLM citation optimization, and AEO. Published by AI Audit Scan.">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-[#050505] text-slate-300 font-sans">
+<body>
 
-    <div class="border-b border-white/5 py-3 px-6 text-xs font-mono flex justify-between items-center bg-black/50 sticky top-0 z-50 backdrop-blur-md">
-        <div class="flex items-center gap-4">
-            <span class="flex items-center gap-2 text-cyan-400">
-                <span class="w-2 h-2 bg-cyan-400 rounded-full badge-live"></span> LIVE FEED: SEARCHGPT INDEXING
-            </span>
-        </div>
-        <a href="https://aiauditscan.com" class="text-white hover:text-cyan-400 transition-colors">ACCESS SCANNER →</a>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-live">
+      <span class="topbar-dot"></span>
+      AI Audit Scan Intelligence — Research & Insights
+    </div>
+    <a href="https://aiauditscan.com">aiauditscan.com →</a>
+  </div>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-brand">
+      <div class="masthead-title">AI Audit <span>Scan</span> Intelligence</div>
+      <div class="masthead-sub">AEO · LLM Visibility · Structured Data Research</div>
+    </div>
+    <a href="https://aiauditscan.com/register" class="masthead-cta">Free AI Scan →</a>
+  </header>
+
+  <!-- Main -->
+  <main class="container">
+
+    <!-- Back link (hidden on index) -->
+    <div id="back-link" style="display:none;">
+      <a href="index.html" class="back-link">← Back to Intelligence</a>
     </div>
 
-    <main class="max-w-5xl mx-auto px-6 py-16">
-        
-        <header class="mb-20">
-            <h1 class="text-3xl font-bold text-white mb-4">AI Audit Scan <span class="mx-3 text-slate-800">/</span> <span class="text-slate-600 font-light">Intelligence</span></h1>
-            <div id="back-link" style="display:none;" class="mb-4">
-                <a href="index.html" class="text-cyan-400 text-xs font-mono hover:underline">← BACK TO INDEX</a>
+    <!-- Index view -->
+    <div id="articles-list">
+
+      <div class="section-label">Latest Research</div>
+
+      <!-- Index layout: main + sidebar -->
+      <div class="index-layout">
+        <div class="index-main">
+
+          <!-- Featured article -->
+          <div class="article-featured">
+            <div class="article-featured-img">
+              <img src="https://news.aiauditscan.com/assets/img/audit-results.jpg"
+                alt="AI Visibility Audit Chart"
+                onerror="this.parentElement.style.background='#0A1628'">
             </div>
-        </header>
+            <div class="article-featured-body">
+              <div class="article-meta">
+                <span class="article-cat">AI Audit</span>
+                <span class="article-date">March 19, 2026</span>
+              </div>
+              <h2 onclick="loadPost('2026-03-19-ai-visibility-gap-1')">
+                409 E-commerce Sites Scanned. 60% are Invisible to AI.
+              </h2>
+              <p>Analysis of 409 global brands: 98.3% lack Product schema and 60% are invisible to LLM discovery phases.</p>
+              <div class="article-author">
+                <div class="article-author-dot">J</div>
+                Joelle — Strategic Insights @ AI Audit Scan
+              </div>
+              <a href="?post=2026-03-19-ai-visibility-gap-1" class="read-link" onclick="loadPost('2026-03-19-ai-visibility-gap-1'); return false;">
+                Read full analysis →
+              </a>
+            </div>
+          </div>
 
-        <div id="articles-list" class="grid md:grid-cols-3 gap-12">
-            <div class="md:col-span-2 space-y-12">
-                <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500 border-b border-white/10 pb-2">Latest Insights</h2>
-                
-                <article class="group">
-                    <time class="text-xs font-mono text-cyan-500/70 mb-2 block">MARCH 19, 2026</time>
-                    <h3 class="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-4">The AI visibility gap</h3>
-                    <p class="text-slate-400 leading-relaxed mb-4">Analysis of 409 global brands: 98.3% lack Product schema and 60% are invisible to LLM discovery phases.</p>
-                    <a href="?post=2026-03-19-ai-visibility-gap-1" class="text-sm font-bold text-white border-b-2 border-cyan-400/30 pb-1">Read full analysis</a>
-                </article>
-
-                <article class="group">
-                    <time class="text-xs font-mono text-cyan-500/70 mb-2 block">MARCH 20, 2026</time>
-                    <h3 class="text-2xl font-bold text-white group-hover:text-cyan-400 transition-colors mb-4">AI Search Engines: Meta-tag limitations</h3>
-                    <p class="text-slate-400 leading-relaxed mb-4">Modern search LLMs ignore up to 60% of unstructured web information.</p>
-                    <a href="?post=2026-03-20-ai-visibility-gap-2" class="text-sm font-bold text-white border-b-2 border-cyan-400/30 pb-1">View methodology</a>
-                </article>
+          <!-- Secondary articles grid -->
+          <div class="articles-grid">
+            <div class="article-card">
+              <div class="article-meta">
+                <span class="article-cat">Methodology</span>
+                <span class="article-date">March 20, 2026</span>
+              </div>
+              <h3 onclick="loadPost('2026-03-20-ai-visibility-gap-2')">
+                AI Search Engines: Meta-tag limitations
+              </h3>
+              <p>Modern search LLMs ignore up to 60% of unstructured web information. What this means for your content strategy.</p>
+              <a href="?post=2026-03-20-ai-visibility-gap-2" class="read-link" style="font-size:11px;" onclick="loadPost('2026-03-20-ai-visibility-gap-2'); return false;">
+                View methodology →
+              </a>
             </div>
 
-            <aside class="space-y-10">
-                <div class="bg-slate-900/40 p-6 rounded-xl border border-white/5">
-                    <h2 class="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">Diagnostic Tool</h2>
-                    <input type="text" id="scan-url" placeholder="https://..." class="w-full bg-black border border-white/10 p-3 text-sm rounded mb-3 focus:border-cyan-400 outline-none">
-                    <button onclick="redirectToScan()" class="w-full bg-white text-black font-bold py-3 text-sm rounded hover:bg-cyan-400 transition-colors">Run Free AI Scan</button>
-                </div>
-            </aside>
+            <!-- Placeholder cards — remove when real posts exist -->
+            <div class="article-card" style="opacity:0.35;">
+              <div class="article-meta">
+                <span class="article-cat">Case Study</span>
+                <span class="article-date">Coming soon</span>
+              </div>
+              <h3>The 3-Step Recovery Plan for LLM Visibility</h3>
+              <p>The three technical quick wins that 98% of brands ignore — used by the 0.7% who rank in AI answers.</p>
+            </div>
+
+            <div class="article-card" style="opacity:0.35;">
+              <div class="article-meta">
+                <span class="article-cat">Research</span>
+                <span class="article-date">Coming soon</span>
+              </div>
+              <h3>Why Perplexity Cites Differently Than ChatGPT</h3>
+              <p>RAG vs retrieval-augmented generation: the structural differences that determine citation probability per engine.</p>
+            </div>
+          </div>
+
         </div>
 
-        <div id="content-wrapper" class="max-w-3xl mx-auto">
-            <div id="content" class="prose prose-invert prose-cyan max-w-none">
+        <!-- Sidebar -->
+        <aside>
+          <div class="sidebar-tool">
+            <div class="sidebar-tool-label">Diagnostic Tool</div>
+            <p style="font-size:12px; color:#64748B; margin-bottom:12px; line-height:1.5;">Check your AI visibility score instantly.</p>
+            <input type="text" id="scan-url" placeholder="https://yourdomain.com">
+            <button onclick="redirectToScan()">Run Free AI Scan</button>
+          </div>
+
+          <div style="margin-top:20px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:16px;">
+            <div class="sidebar-tool-label" style="margin-bottom:8px;">About This Publication</div>
+            <p style="font-size:12px; color:#64748B; line-height:1.55;">Research and strategic analysis on AI search visibility. Published by <a href="https://aiauditscan.com" style="color:#0284C7;">AI Audit Scan</a> — the platform that measures brand visibility across ChatGPT, Gemini, Perplexity and Claude.</p>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+
+    <!-- Article view (hidden on index) -->
+    <div id="content-wrapper" style="display:none;">
+      <div id="content"></div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-brand">AI Audit <span>Scan</span> Intelligence</div>
+    <div>Research published by <a href="https://aiauditscan.com">aiauditscan.com</a> · © 2026 AI Audit Scan</div>
+    <div style="display:flex; gap:16px;">
+      <a href="https://aiauditscan.com/pricing">Platform</a>
+      <a href="https://aiauditscan.com/terms">Terms</a>
+    </div>
+  </footer>
+
+  <script>
+    // ── Post loader ────────────────────────────────────────────────────────
+    async function loadPost(postName) {
+      const listSection    = document.getElementById('articles-list');
+      const contentWrapper = document.getElementById('content-wrapper');
+      const contentArea    = document.getElementById('content');
+      const backLink       = document.getElementById('back-link');
+
+      if (!postName) return;
+
+      // Update URL without reload
+      history.pushState({}, '', '?post=' + postName);
+
+      listSection.style.display    = 'none';
+      contentWrapper.style.display = 'block';
+      backLink.style.display       = 'block';
+      contentArea.innerHTML = '<div class="loading">Loading analysis...</div>';
+
+      try {
+        const response = await fetch(`_posts/${postName}.md`);
+        if (!response.ok) throw new Error('not found');
+        const markdown = await response.text();
+
+        // Strip frontmatter
+        const clean = markdown.replace(/^---[\s\S]+?---\n?/, '').trim();
+        const html  = marked.parse(clean);
+
+        // Extract author from frontmatter for byline
+        const authorMatch = markdown.match(/^author:\s*"?([^"\n]+)"?/m);
+        const dateMatch   = markdown.match(/^date:\s*([^\n]+)/m);
+        const catMatch    = markdown.match(/^category:\s*"?([^"\n]+)"?/m);
+        const titleMatch  = markdown.match(/^title:\s*"?([^"\n]+)"?/m);
+
+        const author   = authorMatch ? authorMatch[1].trim() : 'AI Audit Scan';
+        const date     = dateMatch   ? new Date(dateMatch[1].trim()).toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'}) : '';
+        const category = catMatch    ? catMatch[1].trim() : '';
+        const title    = titleMatch  ? titleMatch[1].trim() : '';
+
+        contentArea.innerHTML = `
+          <article class="post">
+            <div class="post-meta">
+              ${category ? `<span class="article-cat">${category}</span>` : ''}
+              ${date ? `<span class="article-date">${date}</span>` : ''}
+            </div>
+            ${title ? `<h1>${title}</h1>` : ''}
+            <div class="post-byline">
+              <div class="article-author-dot">${author.charAt(0)}</div>
+              <span>By <strong>${author}</strong> · Strategic Insights @ AI Audit Scan</span>
+            </div>
+            ${html}
+            <div class="post-footer">
+              <div class="post-author-block">
+                <div class="post-author-avatar">${author.charAt(0)}</div>
+                <div>
+                  <div class="post-author-name">${author}</div>
+                  <div class="post-author-role">Strategic Insights · AI Audit Scan</div>
                 </div>
-        </div>
+              </div>
+              <a href="https://aiauditscan.com/register" style="font-size:11px; font-weight:800; color:#0284C7; text-decoration:none;">
+                Run a Free AI Scan →
+              </a>
+            </div>
+          </article>
+        `;
+      } catch (e) {
+        contentArea.innerHTML = `
+          <article class="post">
+            <h1>Analysis Not Found</h1>
+            <p>This intelligence file has been moved or is not yet published.</p>
+            <a href="index.html" class="back-link">← Back to Intelligence</a>
+          </article>
+        `;
+      }
+    }
 
-    </main>
+    // ── Scan redirect ──────────────────────────────────────────────────────
+    function redirectToScan() {
+      const url = document.getElementById('scan-url').value.trim();
+      if (url) {
+        window.location.href = 'https://aiauditscan.com/register/?url=' + encodeURIComponent(url);
+      }
+    }
 
-    <script>
-        async function loadPost() {
-            const params = new URLSearchParams(window.location.search);
-            const postName = params.get('post');
-            const listSection = document.getElementById('articles-list');
-            const contentWrapper = document.getElementById('content-wrapper');
-            const contentArea = document.getElementById('content');
-            const backLink = document.getElementById('back-link');
+    // Enter key on scan input
+    document.getElementById('scan-url').addEventListener('keydown', e => {
+      if (e.key === 'Enter') redirectToScan();
+    });
 
-            if (postName) {
-                listSection.style.display = 'none';
-                contentWrapper.style.display = 'block';
-                backLink.style.display = 'block';
-                contentArea.innerHTML = '<p class="text-cyan-400 font-mono italic">Decrypting intelligence file...</p>';
-                
-                try {
-                    const response = await fetch(`_posts/${postName}.md`);
-                    if (!response.ok) throw new Error();
-                    const markdown = await response.text();
-                    const cleanMarkdown = markdown.replace(/^---[\s\S]+?---/, '');
-                    contentArea.innerHTML = marked.parse(cleanMarkdown);
-                } catch (e) {
-                    contentArea.innerHTML = '<h2 class="text-white">Analysis File Not Found</h2><p>The requested data has been moved or encrypted.</p>';
-                }
-            }
-        }
+    // ── Auto-load from URL ─────────────────────────────────────────────────
+    const params = new URLSearchParams(window.location.search);
+    const postParam = params.get('post');
+    if (postParam) loadPost(postParam);
+  </script>
 
-        function redirectToScan() {
-            const url = document.getElementById('scan-url').value;
-            if (url) window.location.href = "https://aiauditscan.com/register/?url=" + encodeURIComponent(url);
-        }
-
-        loadPost();
-    </script>
 </body>
 </html>
