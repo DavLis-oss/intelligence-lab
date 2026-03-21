@@ -60,3 +60,38 @@ img {
     margin: 2rem 0;
     border: 1px solid var(--border);
 }
+/* Transforme le Cliffhanger en encadré "Next Steps" */
+article blockquote {
+    margin-top: 50px;
+    padding: 30px;
+    background: rgba(34, 211, 238, 0.03); /* Un bleu très léger */
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    border-left: 4px solid #22d3ee; /* Barre verticale cyan */
+    border-radius: 4px;
+}
+
+article blockquote h3 {
+    color: #22d3ee;
+    font-family: 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Transformer le lien "Run a Free Scan" en bouton réel */
+article a[href*="register"] {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: all 0.2s;
+}
+
+article a[href*="register"]:hover {
+    background: var(--accent-color);
+}

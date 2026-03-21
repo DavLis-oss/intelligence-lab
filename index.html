@@ -67,7 +67,7 @@
                         Context window evolution is a game changer for documentation indexing. 
                         <strong>According to our recent tests at AI Audit Scan</strong>, semantic density is becoming secondary to clean JSON-LD structuring.
                     </p>
-                    <a href="#" class="text-sm font-bold text-white border-b-2 border-cyan-400/30 pb-1">Read full analysis</a>
+                    <a href=""?post=2026-03-21-ai-visibility-gap-1" class="text-sm font-bold text-white border-b-2 border-cyan-400/30 pb-1">Read full analysis</a>
                 </article>
 
                 <article class="group cursor-pointer">
@@ -132,29 +132,38 @@ function redirectToScan() {
 
 <script>
     async function loadPost() {
-        // Récupère le nom de l'article dans l'URL, sinon prend la Partie 1 par défaut
         const params = new URLSearchParams(window.location.search);
-        const postName = params.get('post') || '2026-03-21-ai-visibility-gap-1'; 
-        
-        try {
-            // Va chercher le fichier .md dans ton dossier _posts
-            const response = await fetch(`_posts/${postName}.md`);
-            if (!response.ok) throw new Error('Document introuvable');
+        const postName = params.get('post');
+        const listSection = document.querySelector('main > div.grid'); // Ta liste d'articles
+        const contentArea = document.getElementById('content');
+
+        if (postName) {
+            // 1. On cache la liste des articles
+            if (listSection) listSection.style.display = 'none';
+            // 2. On affiche la zone de contenu (assure-toi qu'elle existe dans ton HTML)
+            contentArea.innerHTML = '<p class="text-cyan-400 font-mono">Loading intelligence report...</p>';
             
-            const markdown = await response.text();
-            
-            // Nettoie les métadonnées du haut (le "Frontmatter") pour n'afficher que le texte
-            const cleanMarkdown = markdown.replace(/^---[\s\S]+?---/, '');
-            
-            // Transforme le Markdown en beau HTML et l'injecte dans l'article
-            document.getElementById('content').innerHTML = marked.parse(cleanMarkdown);
-        } catch (error) {
-            document.getElementById('content').innerHTML = `<h2>Erreur de chargement</h2><p>Ce rapport d'intelligence est momentanément indisponible.</p>`;
+            try {
+                const response = await fetch(`_posts/${postName}.md`);
+                if (!response.ok) throw new Error();
+                const markdown = await response.text();
+                const cleanMarkdown = markdown.replace(/^---[\s\S]+?---/, '');
+                contentArea.innerHTML = marked.parse(cleanMarkdown);
+                window.scrollTo(0,0);
+            } catch (e) {
+                contentArea.innerHTML = '<h2>Report not found</h2>';
+            }
         }
     }
 
-    // Lance le chargement au chargement de la page
     loadPost();
+
+    function redirectToScan() {
+        const urlToScan = document.getElementById('scan-url').value;
+        if (urlToScan) {
+            window.location.href = "https://aiauditscan.com/register/?url=" + encodeURIComponent(urlToScan);
+        }
+    }
 </script>
 
 </body>
