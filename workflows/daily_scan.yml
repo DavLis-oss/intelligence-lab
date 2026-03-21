@@ -1,1 +1,37 @@
+name: AI News Intelligence Scan
 
+on:
+  schedule:
+    - cron: '0 */2 * * *' # Tourne toutes les 2 heures
+  workflow_dispatch: # Permet de le lancer manuellement pour tester
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install dependencies
+        run: |
+          pip install google-generativeai feedparser requests
+
+      - name: Run Fetcher Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python scripts/fetcher_gemini.py
+
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name 'AiAuditScan Bot'
+          git config --global user.email 'bot@aiauditscan.com'
+          git add _drafts/ processed_links.txt
+          git commit -m "New intelligence drafts found" || echo "No changes to commit"
+          git push
