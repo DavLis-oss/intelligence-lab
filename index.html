@@ -81,9 +81,9 @@
                         <p class="text-sm text-slate-400 mb-4 font-mono">
                             Check if your website is "AI-Ready".
                         </p>
-                        <input type="text" placeholder="https://aiauditscan.com/" class="w-full bg-black border border-white/10 p-3 text-sm rounded mb-3 focus:border-cyan-400 outline-none">
-                        <button class="w-full bg-white text-black font-bold py-3 text-sm rounded hover:bg-cyan-400 transition-colors">
-                            Run Free AI Scan
+                        <input type="text" id="scan-url" placeholder="https://aiauditscan.com/" class="w-full bg-black border border-white/10 p-3 text-sm rounded mb-3 focus:border-cyan-400 outline-none">
+                        <button onclick="redirectToScan()" class="w-full bg-white text-black font-bold py-3 text-sm rounded hover:bg-cyan-400 transition-colors">
+                        Run Free AI Scan
                         </button>
                     </div>
                 </div>
@@ -106,6 +106,22 @@
             <a href="#">2026 ROADMAP</a>
         </div>
     </footer>
+
+<script>
+function redirectToScan() {
+    // 1. On récupère l'URL tapée par l'utilisateur
+    const urlToScan = document.getElementById('scan-url').value;
+    
+    // 2. On vérifie si l'utilisateur a bien écrit quelque chose
+    if (urlToScan) {
+        // 3. On redirige vers ta landing page principale 
+        // Note : On passe l'URL en paramètre pour que ton outil principal puisse la lire
+        window.location.href = "https://aiauditscan.com/?url=" + encodeURIComponent(urlToScan);
+    } else {
+        alert("Please enter a website URL first.");
+    }
+}
+</script>
 
 </body>
 </html>
