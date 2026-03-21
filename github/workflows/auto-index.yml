@@ -1,0 +1,23 @@
+name: Auto Update Posts Index
+on:
+  push:
+    paths:
+      - '_posts/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Generate JSON
+        run: node generate-posts.js
+      - name: Commit and Push
+        run: |
+          git config --global user.name 'AiAuditScan-Bot'
+          git config --global user.email 'bot@aiauditscan.com'
+          git add posts.json
+          git commit -m "🤖 Auto-update posts.json index" || exit 0
+          git push
