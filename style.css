@@ -1,0 +1,62 @@
+/* Configuration Globale - Look "Lab" */
+:root {
+    --bg-color: #05070a;
+    --card-bg: #0d1117;
+    --accent-color: #22d3ee; /* Cyan */
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, sans-serif;
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Style des Articles Markdown */
+article h1 { font-size: 2.5rem; color: #fff; letter-spacing: -0.02em; margin-bottom: 1rem; }
+article h2 { font-size: 1.5rem; color: var(--accent-color); margin-top: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem; }
+article p { margin-bottom: 1.5rem; font-size: 1.1rem; }
+
+/* Tableaux - Crucial pour l'aspect Data */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th { background: rgba(34, 211, 238, 0.1); color: var(--accent-color); text-align: left; padding: 12px; font-size: 0.9rem; text-transform: uppercase; }
+td { padding: 12px; border-bottom: 1px solid var(--border); }
+
+/* Badges de log [ANALYSIS LOG] */
+strong { color: var(--accent-color); }
+
+/* Blockquotes pour le côté expert */
+blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    font-style: italic;
+}
+
+/* Images - Pleine largeur et pro */
+img {
+    width: 100%;
+    border-radius: 12px;
+    margin: 2rem 0;
+    border: 1px solid var(--border);
+}
