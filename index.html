@@ -19,12 +19,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Audit Scan Intelligence | AI Visibility Insights & Audit Lab</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         .news-card:hover { border-color: #22d3ee; }
         .badge-live { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
     </style>
 </head>
+<link rel="stylesheet" href="style.css">
 <body class="bg-[#050505] text-slate-300 font-sans selection:bg-cyan-500/30">
 
     <div class="border-b border-white/5 py-3 px-6 text-xs font-mono flex justify-between items-center bg-black/50 sticky top-0 z-50 backdrop-blur-md">
@@ -52,6 +54,11 @@
             
             <div class="md:col-span-2 space-y-12">
                 <h2 class="text-sm font-semibold uppercase tracking-widest text-slate-500 border-b border-white/10 pb-2">Latest Insights</h2>
+    
+                <div id="content" class="prose prose-invert max-w-none">
+                    <p class="text-slate-500 italic">Initiating neural link to intelligence database...</p>
+                </div>
+            </div>
                 
                 <article class="group cursor-pointer">
                     <time class="text-xs font-mono text-cyan-500/70 mb-2 block">MARCH 21, 2026</time>
@@ -81,7 +88,7 @@
                         <p class="text-sm text-slate-400 mb-4 font-mono">
                             Check if your website is "AI-Ready".
                         </p>
-                        <input type="text" id="scan-url" placeholder="https://aiauditscan.com/" class="w-full bg-black border border-white/10 p-3 text-sm rounded mb-3 focus:border-cyan-400 outline-none">
+                        <input type="text" id="scan-url" placeholder="https://aiauditscan.com/register" class="w-full bg-black border border-white/10 p-3 text-sm rounded mb-3 focus:border-cyan-400 outline-none">
                         <button onclick="redirectToScan()" class="w-full bg-white text-black font-bold py-3 text-sm rounded hover:bg-cyan-400 transition-colors">
                         Run Free AI Scan
                         </button>
@@ -116,11 +123,38 @@ function redirectToScan() {
     if (urlToScan) {
         // 3. On redirige vers ta landing page principale 
         // Note : On passe l'URL en paramètre pour que ton outil principal puisse la lire
-        window.location.href = "https://aiauditscan.com/?url=" + encodeURIComponent(urlToScan);
+        window.location.href = "https://aiauditscan.com/register/?url=" + encodeURIComponent(urlToScan);
     } else {
         alert("Please enter a website URL first.");
     }
 }
+</script>
+
+<script>
+    async function loadPost() {
+        // Récupère le nom de l'article dans l'URL, sinon prend la Partie 1 par défaut
+        const params = new URLSearchParams(window.location.search);
+        const postName = params.get('post') || '2026-03-21-ai-visibility-gap-1'; 
+        
+        try {
+            // Va chercher le fichier .md dans ton dossier _posts
+            const response = await fetch(`_posts/${postName}.md`);
+            if (!response.ok) throw new Error('Document introuvable');
+            
+            const markdown = await response.text();
+            
+            // Nettoie les métadonnées du haut (le "Frontmatter") pour n'afficher que le texte
+            const cleanMarkdown = markdown.replace(/^---[\s\S]+?---/, '');
+            
+            // Transforme le Markdown en beau HTML et l'injecte dans l'article
+            document.getElementById('content').innerHTML = marked.parse(cleanMarkdown);
+        } catch (error) {
+            document.getElementById('content').innerHTML = `<h2>Erreur de chargement</h2><p>Ce rapport d'intelligence est momentanément indisponible.</p>`;
+        }
+    }
+
+    // Lance le chargement au chargement de la page
+    loadPost();
 </script>
 
 </body>
