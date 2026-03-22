@@ -352,6 +352,11 @@
       el.innerHTML = `<p style="color:#DC2626;font-size:13px;padding:24px 0;">
         Could not load posts.json — ${e.message}</p>`;
     }
+    // Trigger patch hooks after content load
+      if (window.AAS) {
+        window.AAS.onPostLoad(slug, title);
+        window.AAS.fixAltTags();
+        }
   }
 
   // ── Load post ──────────────────────────────────────────────────────────
@@ -443,7 +448,7 @@
   if (postParam) loadPost(postParam);
   else buildIndex();
   </script>
-
+<script src="aas-patch.js"></script>
 </body>
 </html>
 
