@@ -4,7 +4,7 @@ title: "From 36 to 58/100 AI Visibility: What you will learn from our Nutriish c
 date: 2026-02-23
 author: "Joelle"
 category: "Case Study"
-description: "Nutriish.me (www.nutriish.me) started the year invisible to AI engines like ChatGPT, Claude, Gemini, and Perplexity. A digital nutrition concierge for busy fami"
+description: "Nutriish.me started the year invisible to AI engines like ChatGPT, Claude, Gemini, and Perplexity. A digital nutrition concierge for busy family"
 ---
 
 Nutriish.me (www.nutriish.me) started the year invisible to AI engines like ChatGPT, Claude, Gemini, and Perplexity. A digital nutrition concierge for busy families and professionals, it had solid product design but zero structural signals that let models pull it into answers.
