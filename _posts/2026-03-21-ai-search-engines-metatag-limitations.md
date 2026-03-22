@@ -7,6 +7,10 @@ category: "Methodology"
 description: "AI search engines have quietly walked away from the old meta‑tag religion, and most of marketing has not got the memo yet."
 ---
 
+![HTML code with meta-tags](https://news.aiauditscan.com/assets/img/meta-tags_pixabay.jpg)
+Picture: HTML code with meta-tags [pixabay.com](https://pixabay.com/).
+
+
 AI search engines have quietly walked away from the old meta‑tag religion, and most of marketing has not got the memo yet.
 
 The impact on AI visibility and AEO

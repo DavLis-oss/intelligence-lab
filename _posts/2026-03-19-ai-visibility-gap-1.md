@@ -40,15 +40,7 @@ The distribution shows a polarized market:
 * **Beauty (22.0/100):** Premium brands on legacy systems suffer.
 * **General Retail (8.3/100):** The worst performers overall.
 
-***
-
-### [THE CLIFFHANGER]
-This visibility crisis is not a future threat. It is a present reality. But there is a pattern among the 0.7% who actually rank in AI answers. They use three specific technical "Quick Wins" that 98% of the market ignores. 
-
-**Part 2: The 3-Step Recovery Plan for LLM Visibility — Publishing Tomorrow.**
-
-***
-
-**Author:** Joelle
-**Strategic Insights @ AI Audit Scan**
-**[Run a Free AI Readiness Scan →](https://aiauditscan.com)**
+> ### What's Next
+> This visibility crisis is not a future threat. It is a present reality. But there is a pattern among the 0.7% who actually rank in AI answers. They share three specific technical signals that 98% of the market ignores.
+>
+> **Part 2: The 3-Step Recovery Plan for LLM Visibility** — publishing tomorrow.
