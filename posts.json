@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "2026-02-23-from-36-to-58100-ai-visibility-what-you-will learn-from-our-",
+    "title": "From 36 to 58/100 AI Visibility: What you will learn from our Nutriish case study",
+    "date": "2026-03-20",
+    "author": "Joelle",
+    "category": "Case Study",
+    "description": "Nutriish.me started the year invisible to AI engines like ChatGPT, Claude, Gemini, and Perplexity. A digital nutrition concierge for busy family.",
+    "image": "https://news.aiauditscan.com/assets/img/Nutriish_logo.webp",
+    "featured": false
+  }, 
+  {
+    "slug": "2026-03-19-ai-visibility-gap-1",
+    "title": "409 E-commerce Sites Scanned. 60% are Invisible to AI.",
+    "date": "2026-03-19",
+    "author": "Joelle",
+    "category": "AI Audit",
+    "description": "Analysis of 409 global brands: 98.3% lack Product schema and 60% are invisible to LLM discovery phases.",
+    "image": "https://news.aiauditscan.com/assets/img/audit-results.jpg",
+    "featured": true
+  },
+  {
+    "slug": "2026-03-21-ai-search-engines-metatag-limitations",
+    "title": "AI Search Engines: Meta‑tag limitations",
+    "date": "2026-03-20",
+    "author": "Joelle",
+    "category": "Methodology",
+    "description": "AI search engines have quietly walked away from the old meta‑tag religion, and most of marketing has not got the memo yet.",
+    "image": "https://news.aiauditscan.com/assets/img/meta-tags_pixabay.jpg",
+    "featured": false
+  }
+]
