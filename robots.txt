@@ -1,0 +1,35 @@
+User-agent: *
+Allow: /
+
+# AI Search Crawlers — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: BraveBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://news.aiauditscan.com/sitemap.xml
