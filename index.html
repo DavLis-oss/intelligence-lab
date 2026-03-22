@@ -19,34 +19,191 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Audit Scan Intelligence — Research & Insights</title>
   <meta name="description" content="Strategic research on AI search visibility, LLM citation optimization, and AEO.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Critical CSS inline — avoids any external file loading issue -->
+  <style>
+    /* ── Variables ── */
+    :root {
+      --navy:#0A1628; --sky:#0EA5E9; --sky2:#0284C7;
+      --white:#ffffff; --off:#F8FAFC; --border:#E2E8F0;
+      --muted:#64748B; --body:#1E293B;
+      --serif:'Playfair Display',Georgia,serif;
+      --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--sans);background:var(--white);color:var(--body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+    /* ── Topbar ── */
+    .topbar{background:var(--navy);color:rgba(255,255,255,.45);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:7px 24px;display:flex;align-items:center;justify-content:space-between;}
+    .topbar-live{display:flex;align-items:center;gap:8px;color:var(--sky);}
+    .topbar-dot{width:6px;height:6px;border-radius:50%;background:var(--sky);animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+    .topbar a{color:rgba(255,255,255,.4);text-decoration:none;transition:color .2s;}
+    .topbar a:hover{color:var(--sky);}
+
+    /* ── Masthead ── */
+    .masthead{background:var(--white);border-bottom:2px solid var(--navy);padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+    .masthead-brand{display:flex;flex-direction:column;text-decoration:none;cursor:pointer;}
+    .masthead-title{font-family:var(--serif);font-size:20px;font-weight:900;color:var(--navy);letter-spacing:-.02em;line-height:1;}
+    .masthead-title span{color:var(--sky);}
+    .masthead-sub{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:3px;}
+    .masthead-right{display:flex;align-items:center;gap:12px;}
+    .masthead-nav a{font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;transition:color .15s;}
+    .masthead-nav a:hover{color:var(--navy);}
+    .masthead-cta{background:var(--navy);color:var(--white);font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:8px 16px;border-radius:6px;text-decoration:none;transition:background .2s;white-space:nowrap;}
+    .masthead-cta:hover{background:var(--sky2);}
+
+    /* ── Container ── */
+    .container{max-width:900px;margin:0 auto;padding:0 24px;}
+
+    /* ── Section label ── */
+    .section-label{font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);padding:28px 0 14px;border-bottom:1px solid var(--border);}
+
+    /* ── Featured article ── */
+    .article-featured{display:grid;grid-template-columns:1fr 1fr;gap:36px;padding:28px 0;border-bottom:1px solid var(--border);}
+    .article-featured-img{background:var(--navy);border-radius:4px;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;}
+    .article-featured-img img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85;}
+    .article-featured-body{display:flex;flex-direction:column;justify-content:center;}
+    .article-meta{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+    .article-cat{font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--sky2);background:#EFF6FF;padding:2px 8px;border-radius:3px;}
+    .article-date{font-size:10px;font-weight:600;color:var(--muted);}
+    .article-featured h2{font-family:var(--serif);font-size:24px;font-weight:900;color:var(--navy);line-height:1.25;letter-spacing:-.01em;margin-bottom:10px;cursor:pointer;transition:color .15s;}
+    .article-featured h2:hover{color:var(--sky2);}
+    .article-featured p{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:14px;}
+    .article-author{font-size:11px;font-weight:700;color:var(--body);display:flex;align-items:center;gap:7px;margin-bottom:14px;}
+    .author-dot{width:22px;height:22px;border-radius:50%;background:var(--navy);color:var(--sky);font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .read-link{font-size:12px;font-weight:800;color:var(--navy);text-decoration:none;display:inline-flex;align-items:center;gap:4px;border-bottom:2px solid var(--sky);padding-bottom:1px;width:fit-content;transition:color .15s;}
+    .read-link:hover{color:var(--sky2);}
+
+    /* ── Articles grid ── */
+    .articles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:24px 0;border-bottom:1px solid var(--border);}
+    .article-card{display:flex;flex-direction:column;gap:7px;}
+    .article-card h3{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--navy);line-height:1.3;cursor:pointer;transition:color .15s;}
+    .article-card h3:hover{color:var(--sky2);}
+    .article-card p{font-size:12.5px;color:var(--muted);line-height:1.55;flex:1;}
+
+    /* ── Index layout ── */
+    .index-layout{display:grid;grid-template-columns:1fr 220px;gap:36px;padding:24px 0 48px;}
+
+    /* ── Sidebar ── */
+    .sidebar-tool{background:var(--off);border:1px solid var(--border);border-radius:8px;padding:18px;}
+    .sidebar-label{font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+    .sidebar-tool input{width:100%;background:var(--white);border:1px solid var(--border);border-radius:6px;padding:8px 10px;font-size:12px;font-family:var(--sans);color:var(--body);outline:none;transition:border-color .15s;margin-bottom:7px;}
+    .sidebar-tool input:focus{border-color:var(--sky);}
+    .sidebar-tool button{width:100%;background:var(--navy);color:var(--white);border:none;border-radius:6px;padding:9px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;transition:background .15s;font-family:var(--sans);}
+    .sidebar-tool button:hover{background:var(--sky2);}
+    .sidebar-about{margin-top:14px;background:var(--off);border:1px solid var(--border);border-radius:8px;padding:16px;}
+
+    /* ── Back link ── */
+    .back-link{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:24px 0 0;transition:color .15s;}
+    .back-link:hover{color:var(--sky2);}
+
+    /* ══════════════════════════════════════════
+       ARTICLE / POST STYLES
+    ══════════════════════════════════════════ */
+    article.post{max-width:680px;margin:0 auto;padding:32px 0 72px;}
+    article.post .post-meta{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+    article.post h1{font-family:var(--serif);font-size:36px;font-weight:900;color:var(--navy);line-height:1.2;letter-spacing:-.02em;margin-bottom:14px;}
+    article.post .post-byline{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:600;color:var(--muted);padding:14px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:24px;}
+    article.post p{font-size:17px!important;line-height:1.75!important;color:#2D3748!important;margin-bottom:20px!important;font-family:var(--sans)!important;}
+    article.post h2{font-family:var(--serif)!important;font-size:22px!important;font-weight:700!important;color:var(--navy)!important;margin:32px 0 10px!important;line-height:1.3!important;}
+    article.post h3{font-size:13px!important;font-weight:800!important;letter-spacing:.1em!important;text-transform:uppercase!important;color:var(--muted)!important;margin:24px 0 8px!important;}
+    article.post strong{color:var(--navy)!important;font-weight:700!important;}
+    article.post a{color:var(--sky2);text-decoration:underline;text-underline-offset:2px;}
+    article.post a:hover{color:var(--navy);}
+    article.post img{width:100%;border-radius:4px;margin:24px 0;border:1px solid var(--border);display:block;}
+    article.post ul,article.post ol{margin:0 0 20px 0;padding-left:0;list-style:none;}
+    article.post li{font-size:16px!important;color:#2D3748!important;padding:4px 0 4px 20px;position:relative;line-height:1.65!important;}
+    article.post ul li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--sky);}
+    article.post ol{counter-reset:list;}
+    article.post ol li{counter-increment:list;}
+    article.post ol li::before{content:counter(list)'.';position:absolute;left:0;top:4px;font-size:12px;font-weight:700;color:var(--sky2);}
+    article.post table{width:100%;border-collapse:collapse;margin:24px 0;font-size:13px;border:1px solid var(--border);}
+    article.post th{background:var(--navy);color:rgba(255,255,255,.7);text-align:left;padding:10px 14px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+    article.post td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--body);vertical-align:top;}
+    article.post tr:last-child td{border-bottom:none;}
+    article.post tr:nth-child(even) td{background:var(--off);}
+    article.post blockquote{background:#F0F9FF;border:1px solid #BAE6FD;border-left:4px solid var(--sky);border-radius:0 6px 6px 0;padding:18px 22px;margin:28px 0;font-style:normal;}
+    article.post blockquote h3{font-size:9px!important;font-weight:800!important;letter-spacing:.18em!important;text-transform:uppercase!important;color:var(--sky2)!important;margin:0 0 8px!important;}
+    article.post blockquote p{font-size:15px!important;color:var(--navy)!important;margin-bottom:8px!important;line-height:1.6!important;}
+    article.post blockquote p:last-child{margin-bottom:0!important;}
+    article.post hr{border:none;border-top:1px solid var(--border);margin:32px 0;}
+    article.post em{font-style:italic;color:var(--muted);}
+    article.post p:has(img)+em,article.post p img~*{display:block;font-size:12px;color:var(--muted);text-align:center;margin-top:-16px;margin-bottom:24px;}
+    .post-footer{margin-top:40px;padding-top:20px;border-top:2px solid var(--navy);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+    .post-author-block{display:flex;align-items:center;gap:12px;}
+    .post-author-avatar{width:40px;height:40px;border-radius:50%;background:var(--navy);color:var(--sky);font-family:var(--serif);font-size:16px;font-weight:900;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .post-author-name{font-size:13px;font-weight:700;color:var(--navy);}
+    .post-author-role{font-size:11px;color:var(--muted);margin-top:1px;}
+    .post-cta-btn{background:var(--navy);color:var(--white);font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:9px 18px;border-radius:6px;text-decoration:none;transition:background .2s;}
+    .post-cta-btn:hover{background:var(--sky2);}
+
+    /* ── Loading ── */
+    .loading{font-size:12px;font-weight:600;color:var(--muted);padding:48px 0;display:flex;align-items:center;gap:8px;}
+    .loading::before{content:'';width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--sky);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* ── Footer ── */
+    footer{background:var(--navy);padding:40px 24px 24px;}
+    .footer-inner{max-width:900px;margin:0 auto;}
+    .footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;padding-bottom:28px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:20px;}
+    .footer-brand-col .footer-title{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--white);margin-bottom:6px;}
+    .footer-brand-col .footer-title span{color:var(--sky);}
+    .footer-brand-col p{font-size:12px;color:rgba(255,255,255,.4);line-height:1.55;}
+    .footer-col-label{font-size:9px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:12px;}
+    .footer-col a{display:block;font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;margin-bottom:7px;transition:color .15s;}
+    .footer-col a:hover{color:var(--sky);}
+    .footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+    .footer-copy{font-size:11px;color:rgba(255,255,255,.25);}
+    .footer-links{display:flex;gap:16px;}
+    .footer-links a{font-size:11px;color:rgba(255,255,255,.25);text-decoration:none;transition:color .15s;}
+    .footer-links a:hover{color:rgba(255,255,255,.6);}
+
+    /* ── Responsive ── */
+    @media(max-width:700px){
+      .article-featured{grid-template-columns:1fr;}
+      .articles-grid{grid-template-columns:1fr;}
+      .index-layout{grid-template-columns:1fr;}
+      .footer-top{grid-template-columns:1fr;}
+      article.post h1{font-size:26px;}
+    }
+  </style>
 </head>
 <body>
 
   <div class="topbar">
     <div class="topbar-live">
       <span class="topbar-dot"></span>
-      AI Audit Scan Intelligence — Research & Insights
+      AI Audit Scan Intelligence
     </div>
     <a href="https://aiauditscan.com">aiauditscan.com →</a>
   </div>
 
   <header class="masthead">
-    <div class="masthead-brand">
+    <a class="masthead-brand" href="https://news.aiauditscan.com/index.html" onclick="showIndex(); return false;">
       <div class="masthead-title">AI Audit <span>Scan</span> Intelligence</div>
       <div class="masthead-sub">AEO · LLM Visibility · Structured Data Research</div>
+    </a>
+    <div class="masthead-right">
+      <nav class="masthead-nav" style="display:flex;gap:16px;margin-right:8px;">
+        <a href="https://aiauditscan.com/pricing">Platform</a>
+        <a href="https://aiauditscan.com/about">About</a>
+      </nav>
+      <a href="https://aiauditscan.com/register" class="masthead-cta">Free AI Scan →</a>
     </div>
-    <a href="https://aiauditscan.com/register" class="masthead-cta">Free AI Scan →</a>
   </header>
 
   <main class="container">
 
     <div id="back-link" style="display:none;">
-      <a href="index.html" class="back-link">← Back to Intelligence</a>
+      <a href="#" class="back-link" onclick="showIndex(); return false;">← Back to Intelligence</a>
     </div>
 
-    <!-- Index view — built dynamically from posts.json -->
+    <!-- Index view -->
     <div id="articles-list">
       <div class="section-label">Latest Research</div>
       <div class="index-layout">
@@ -55,13 +212,13 @@
         </div>
         <aside>
           <div class="sidebar-tool">
-            <div class="sidebar-tool-label">Diagnostic Tool</div>
+            <div class="sidebar-label">Diagnostic Tool</div>
             <p style="font-size:12px;color:#64748B;margin-bottom:12px;line-height:1.5;">Check your AI visibility score instantly.</p>
             <input type="text" id="scan-url" placeholder="https://yourdomain.com">
             <button onclick="redirectToScan()">Run Free AI Scan</button>
           </div>
-          <div style="margin-top:16px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:16px;">
-            <div class="sidebar-tool-label" style="margin-bottom:8px;">About</div>
+          <div class="sidebar-about">
+            <div class="sidebar-label">About</div>
             <p style="font-size:12px;color:#64748B;line-height:1.55;">Research published by <a href="https://aiauditscan.com" style="color:#0284C7;">AI Audit Scan</a> — the platform that measures brand visibility across ChatGPT, Gemini, Perplexity and Claude.</p>
           </div>
         </aside>
@@ -75,194 +232,190 @@
 
   </main>
 
+  <!-- Footer -->
   <footer>
-    <div class="footer-brand">AI Audit <span>Scan</span> Intelligence</div>
-    <div>Research by <a href="https://aiauditscan.com">aiauditscan.com</a> · © 2026 AI Audit Scan</div>
-    <div style="display:flex;gap:16px;">
-      <a href="https://aiauditscan.com/pricing">Platform</a>
-      <a href="https://aiauditscan.com/terms">Terms</a>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="footer-title">AI Audit <span>Scan</span> Intelligence</div>
+          <p>Strategic research on AI search visibility, LLM citation optimization, and AEO. Published by AI Audit Scan.</p>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Research</div>
+          <a href="#" onclick="showIndex();return false;">All Articles</a>
+          <a href="https://aiauditscan.com/blog">AAS Blog</a>
+          <a href="https://aiauditscan.com/case-study/nutriish">Case Study</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-label">Platform</div>
+          <a href="https://aiauditscan.com">AI Audit Scan</a>
+          <a href="https://aiauditscan.com/pricing">Pricing</a>
+          <a href="https://aiauditscan.com/register">Free Scan</a>
+          <a href="https://aiauditscan.com/about">About</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 AI Audit Scan. AI visibility analysis across ChatGPT, Gemini, Claude and Perplexity.</div>
+        <div class="footer-links">
+          <a href="https://aiauditscan.com/privacy">Privacy</a>
+          <a href="https://aiauditscan.com/terms">Terms</a>
+          <a href="https://aiauditscan.com">aiauditscan.com</a>
+        </div>
+      </div>
     </div>
   </footer>
 
   <script>
-  // ── Helpers ────────────────────────────────────────────────────────────────
-  function fmtDate(str) {
-    try {
-      return new Date(str + 'T12:00:00').toLocaleDateString('en-US', {
-        year: 'numeric', month: 'long', day: 'numeric'
-      });
-    } catch { return str; }
+  // ── Helpers ────────────────────────────────────────────────────────────
+  function fmtDate(s) {
+    try { return new Date(s+'T12:00:00').toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); }
+    catch { return s; }
+  }
+  function ini(n){ return (n||'A').charAt(0).toUpperCase(); }
+
+  // ── Show / hide views ──────────────────────────────────────────────────
+  function showIndex() {
+    document.getElementById('articles-list').style.display  = 'block';
+    document.getElementById('content-wrapper').style.display = 'none';
+    document.getElementById('back-link').style.display       = 'none';
+    history.pushState({}, '', 'index.html');
   }
 
-  function initial(name) {
-    return (name || 'A').charAt(0).toUpperCase();
+  function showPost() {
+    document.getElementById('articles-list').style.display  = 'none';
+    document.getElementById('content-wrapper').style.display = 'block';
+    document.getElementById('back-link').style.display       = 'block';
   }
 
-  // ── Build index from posts.json ────────────────────────────────────────────
+  // ── Build index ────────────────────────────────────────────────────────
   async function buildIndex() {
-    const container = document.getElementById('articles-main');
+    const el = document.getElementById('articles-main');
     try {
-      const res   = await fetch('posts.json');
-      if (!res.ok) throw new Error('posts.json not found');
+      const res   = await fetch('posts.json?v=' + Date.now());
+      if (!res.ok) throw new Error('posts.json not found (' + res.status + ')');
       const posts = await res.json();
-
-      // Sort by date descending
-      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+      posts.sort((a,b) => new Date(b.date) - new Date(a.date));
 
       const featured    = posts.find(p => p.featured) || posts[0];
       const secondaries = posts.filter(p => p !== featured);
-
       let html = '';
 
-      // Featured article
       if (featured) {
-        html += `
-          <div class="article-featured">
-            <div class="article-featured-img" style="${featured.image ? '' : 'display:flex;align-items:center;justify-content:center;'}">
-              ${featured.image
-                ? `<img src="${featured.image}" alt="${featured.title}" onerror="this.parentElement.style.background='#0A1628';this.style.display='none'">`
-                : `<div style="font-family:serif;font-size:32px;font-weight:900;color:rgba(255,255,255,0.15);text-align:center;padding:20px;">AI<br>AUDIT<br>SCAN</div>`}
+        html += `<div class="article-featured">
+          <div class="article-featured-img">
+            ${featured.image
+              ? `<img src="${featured.image}" alt="${featured.title}" onerror="this.style.display='none'">`
+              : `<div style="font-family:serif;font-size:28px;font-weight:900;color:rgba(255,255,255,.12);text-align:center;padding:20px;line-height:1.3;">AI<br>AUDIT<br>SCAN</div>`}
+          </div>
+          <div class="article-featured-body">
+            <div class="article-meta">
+              <span class="article-cat">${featured.category||'Research'}</span>
+              <span class="article-date">${fmtDate(featured.date)}</span>
             </div>
-            <div class="article-featured-body">
-              <div class="article-meta">
-                <span class="article-cat">${featured.category || 'Research'}</span>
-                <span class="article-date">${fmtDate(featured.date)}</span>
-              </div>
-              <h2 onclick="loadPost('${featured.slug}')">${featured.title}</h2>
-              <p>${featured.description}</p>
-              <div class="article-author">
-                <div class="article-author-dot">${initial(featured.author)}</div>
-                ${featured.author} — Strategic Insights @ AI Audit Scan
-              </div>
-              <a href="?post=${featured.slug}" class="read-link"
-                onclick="loadPost('${featured.slug}'); return false;">
-                Read full analysis →
-              </a>
+            <h2 onclick="loadPost('${featured.slug}')">${featured.title}</h2>
+            <p>${featured.description}</p>
+            <div class="article-author">
+              <div class="author-dot">${ini(featured.author)}</div>
+              ${featured.author} — Strategic Insights @ AI Audit Scan
             </div>
-          </div>`;
+            <a href="?post=${featured.slug}" class="read-link"
+              onclick="loadPost('${featured.slug}'); return false;">Read full analysis →</a>
+          </div>
+        </div>`;
       }
 
-      // Secondary articles grid
-      if (secondaries.length > 0) {
+      if (secondaries.length) {
         html += `<div class="articles-grid">`;
         secondaries.forEach(p => {
-          html += `
-            <div class="article-card">
-              <div class="article-meta">
-                <span class="article-cat">${p.category || 'Research'}</span>
-                <span class="article-date">${fmtDate(p.date)}</span>
-              </div>
-              <h3 onclick="loadPost('${p.slug}')">${p.title}</h3>
-              <p>${p.description}</p>
-              <a href="?post=${p.slug}" class="read-link" style="font-size:11px;"
-                onclick="loadPost('${p.slug}'); return false;">
-                Read analysis →
-              </a>
-            </div>`;
+          html += `<div class="article-card">
+            <div class="article-meta">
+              <span class="article-cat">${p.category||'Research'}</span>
+              <span class="article-date">${fmtDate(p.date)}</span>
+            </div>
+            <h3 onclick="loadPost('${p.slug}')">${p.title}</h3>
+            <p>${p.description}</p>
+            <a href="?post=${p.slug}" class="read-link" style="font-size:11px;"
+              onclick="loadPost('${p.slug}'); return false;">Read analysis →</a>
+          </div>`;
         });
         html += `</div>`;
       }
 
-      if (!featured && posts.length === 0) {
-        html = '<p style="color:#64748B;padding:32px 0;">No articles published yet.</p>';
-      }
-
-      container.innerHTML = html;
-
-    } catch (e) {
-      container.innerHTML = `<p style="color:#DC2626;font-size:13px;padding:24px 0;">
-        Could not load articles — make sure posts.json exists in the root directory.<br>
-        <span style="color:#64748B;font-size:11px;">${e.message}</span>
-      </p>`;
+      el.innerHTML = html || '<p style="color:#64748B;padding:32px 0;">No articles yet.</p>';
+    } catch(e) {
+      el.innerHTML = `<p style="color:#DC2626;font-size:13px;padding:24px 0;">
+        Could not load posts.json — ${e.message}</p>`;
     }
   }
 
-  // ── Load article from markdown ─────────────────────────────────────────────
+  // ── Load post ──────────────────────────────────────────────────────────
   async function loadPost(slug) {
-    const listSection    = document.getElementById('articles-list');
-    const contentWrapper = document.getElementById('content-wrapper');
-    const contentArea    = document.getElementById('content');
-    const backLink       = document.getElementById('back-link');
-
-    history.pushState({}, '', '?post=' + slug);
-
-    listSection.style.display    = 'none';
-    contentWrapper.style.display = 'block';
-    backLink.style.display       = 'block';
-    contentArea.innerHTML        = '<div class="loading">Loading analysis...</div>';
+    showPost();
+    history.pushState({post: slug}, '', '?post=' + slug);
+    const el = document.getElementById('content');
+    el.innerHTML = '<div class="loading">Loading analysis...</div>';
 
     try {
-      const res = await fetch(`_posts/${slug}.md`);
-      if (!res.ok) throw new Error(`File not found: _posts/${slug}.md`);
-      const markdown = await res.text();
+      const res = await fetch('_posts/' + slug + '.md?v=' + Date.now());
+      if (!res.ok) throw new Error('_posts/' + slug + '.md not found (' + res.status + ')');
+      const md = await res.text();
 
-      // Extract frontmatter fields
+      // Parse frontmatter
       const fm = {};
-      const fmMatch = markdown.match(/^---\n([\s\S]+?)\n---/);
-      if (fmMatch) {
-        fmMatch[1].split('\n').forEach(line => {
-          const m = line.match(/^(\w+):\s*"?([^"]+)"?\s*$/);
-          if (m) fm[m[1]] = m[2].trim();
-        });
-      }
+      const fmm = md.match(/^---\n([\s\S]+?)\n---/);
+      if (fmm) fmm[1].split('\n').forEach(l => {
+        const m = l.match(/^(\w+):\s*"?([^"]+?)"?\s*$/);
+        if (m) fm[m[1].trim()] = m[2].trim();
+      });
 
       const title  = fm.title  || slug;
       const author = fm.author || 'AI Audit Scan';
       const date   = fm.date   ? fmtDate(fm.date) : '';
       const cat    = fm.category || '';
 
-      // Strip frontmatter and parse markdown
-      const clean = markdown.replace(/^---[\s\S]+?---\n?/, '').trim();
+      const clean = md.replace(/^---[\s\S]+?---\n?/,'').trim();
       const html  = marked.parse(clean);
 
-      contentArea.innerHTML = `
-        <article class="post">
-          <div class="post-meta">
-            ${cat  ? `<span class="article-cat">${cat}</span>` : ''}
-            ${date ? `<span class="article-date">${date}</span>` : ''}
-          </div>
-          <h1>${title}</h1>
-          <div class="post-byline">
-            <div class="article-author-dot">${initial(author)}</div>
-            <span>By <strong>${author}</strong> · Strategic Insights @ AI Audit Scan</span>
-          </div>
-          ${html}
-          <div class="post-footer">
-            <div class="post-author-block">
-              <div class="post-author-avatar">${initial(author)}</div>
-              <div>
-                <div class="post-author-name">${author}</div>
-                <div class="post-author-role">Strategic Insights · AI Audit Scan</div>
-              </div>
+      el.innerHTML = `<article class="post">
+        <div class="post-meta">
+          ${cat  ? `<span class="article-cat">${cat}</span>` : ''}
+          ${date ? `<span class="article-date">${date}</span>` : ''}
+        </div>
+        <h1>${title}</h1>
+        <div class="post-byline">
+          <div class="author-dot">${ini(author)}</div>
+          <span>By <strong>${author}</strong> · Strategic Insights @ AI Audit Scan</span>
+        </div>
+        ${html}
+        <div class="post-footer">
+          <div class="post-author-block">
+            <div class="post-author-avatar">${ini(author)}</div>
+            <div>
+              <div class="post-author-name">${author}</div>
+              <div class="post-author-role">Strategic Insights · AI Audit Scan</div>
             </div>
-            <a href="https://aiauditscan.com/register"
-              style="font-size:11px;font-weight:800;color:#0284C7;text-decoration:none;">
-              Run a Free AI Scan →
-            </a>
           </div>
-        </article>`;
+          <a href="https://aiauditscan.com/register" class="post-cta-btn">Run a Free AI Scan →</a>
+        </div>
+      </article>`;
 
-    } catch (e) {
-      contentArea.innerHTML = `
-        <article class="post">
-          <h1>Analysis Not Found</h1>
-          <p>This file could not be loaded: <code>${slug}.md</code></p>
-          <p style="color:#64748B;font-size:13px;">${e.message}</p>
-        </article>`;
+    } catch(e) {
+      el.innerHTML = `<article class="post">
+        <h1>Analysis Not Found</h1>
+        <p>Could not load: <code>${slug}.md</code></p>
+        <p style="color:#64748B;font-size:13px;">${e.message}</p>
+        <a href="#" onclick="showIndex();return false;" class="read-link" style="margin-top:16px;">← Back to Intelligence</a>
+      </article>`;
     }
   }
 
-  // ── Back button ─────────────────────────────────────────────────────────────
-  window.addEventListener('popstate', () => {
-    const params = new URLSearchParams(window.location.search);
-    if (!params.get('post')) {
-      document.getElementById('articles-list').style.display    = 'block';
-      document.getElementById('content-wrapper').style.display  = 'none';
-      document.getElementById('back-link').style.display        = 'none';
-    }
+  // ── Back/forward navigation ────────────────────────────────────────────
+  window.addEventListener('popstate', e => {
+    if (e.state && e.state.post) loadPost(e.state.post);
+    else showIndex();
   });
 
-  // ── Scan redirect ────────────────────────────────────────────────────────────
+  // ── Scan redirect ──────────────────────────────────────────────────────
   function redirectToScan() {
     const url = document.getElementById('scan-url').value.trim();
     if (url) window.location.href = 'https://aiauditscan.com/register/?url=' + encodeURIComponent(url);
@@ -271,14 +424,11 @@
     if (e.key === 'Enter') redirectToScan();
   });
 
-  // ── Init ────────────────────────────────────────────────────────────────────
+  // ── Init ───────────────────────────────────────────────────────────────
   const params = new URLSearchParams(window.location.search);
   const postParam = params.get('post');
-  if (postParam) {
-    loadPost(postParam);
-  } else {
-    buildIndex();
-  }
+  if (postParam) loadPost(postParam);
+  else buildIndex();
   </script>
 
 </body>
