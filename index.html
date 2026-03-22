@@ -7,10 +7,7 @@
     "@type": "NewsMediaOrganization",
     "name": "AI Audit Scan Intelligence",
     "url": "https://news.aiauditscan.com",
-    "logo": "https://aiauditscan.com/static/img/AI_Audit_Strat_logo.png",
     "description": "Research and strategic insights on AI search visibility, AEO, and LLM citation optimization.",
-    "mainEntityOfPage": "https://news.aiauditscan.com",
-    "knowsAbout": ["AI Search Optimization", "AEO", "LLM Indexing", "Generative Engine Optimization", "Structured Data"],
     "parentOrganization": {
       "@type": "Organization",
       "name": "AI Audit Scan",
@@ -21,13 +18,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AI Audit Scan Intelligence — Research & Insights</title>
-  <meta name="description" content="Strategic research on AI search visibility, LLM citation optimization, and AEO. Published by AI Audit Scan.">
+  <meta name="description" content="Strategic research on AI search visibility, LLM citation optimization, and AEO.">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Top bar -->
   <div class="topbar">
     <div class="topbar-live">
       <span class="topbar-dot"></span>
@@ -36,7 +32,6 @@
     <a href="https://aiauditscan.com">aiauditscan.com →</a>
   </div>
 
-  <!-- Masthead -->
   <header class="masthead">
     <div class="masthead-brand">
       <div class="masthead-title">AI Audit <span>Scan</span> Intelligence</div>
@@ -45,214 +40,245 @@
     <a href="https://aiauditscan.com/register" class="masthead-cta">Free AI Scan →</a>
   </header>
 
-  <!-- Main -->
   <main class="container">
 
-    <!-- Back link (hidden on index) -->
     <div id="back-link" style="display:none;">
       <a href="index.html" class="back-link">← Back to Intelligence</a>
     </div>
 
-    <!-- Index view -->
+    <!-- Index view — built dynamically from posts.json -->
     <div id="articles-list">
-
       <div class="section-label">Latest Research</div>
-
-      <!-- Index layout: main + sidebar -->
       <div class="index-layout">
-        <div class="index-main">
-
-          <!-- Featured article -->
-          <div class="article-featured">
-            <div class="article-featured-img">
-              <img src="https://news.aiauditscan.com/assets/img/audit-results.jpg"
-                alt="AI Visibility Audit Chart"
-                onerror="this.parentElement.style.background='#0A1628'">
-            </div>
-            <div class="article-featured-body">
-              <div class="article-meta">
-                <span class="article-cat">AI Audit</span>
-                <span class="article-date">March 19, 2026</span>
-              </div>
-              <h2 onclick="loadPost('2026-03-19-ai-visibility-gap-1')">
-                409 E-commerce Sites Scanned. 60% are Invisible to AI.
-              </h2>
-              <p>Analysis of 409 global brands: 98.3% lack Product schema and 60% are invisible to LLM discovery phases.</p>
-              <div class="article-author">
-                <div class="article-author-dot">J</div>
-                Joelle — Strategic Insights @ AI Audit Scan
-              </div>
-              <a href="?post=2026-03-19-ai-visibility-gap-1" class="read-link" onclick="loadPost('2026-03-19-ai-visibility-gap-1'); return false;">
-                Read full analysis →
-              </a>
-            </div>
-          </div>
-
-          <!-- Secondary articles grid -->
-          <div class="articles-grid">
-            <div class="article-card">
-              <div class="article-meta">
-                <span class="article-cat">Methodology</span>
-                <span class="article-date">March 20, 2026</span>
-              </div>
-              <h3 onclick="loadPost('2026-03-20-ai-visibility-gap-2')">
-                AI Search Engines: Meta-tag limitations
-              </h3>
-              <p>Modern search LLMs ignore up to 60% of unstructured web information. What this means for your content strategy.</p>
-              <a href="?post=2026-03-20-ai-visibility-gap-2" class="read-link" style="font-size:11px;" onclick="loadPost('2026-03-20-ai-visibility-gap-2'); return false;">
-                View methodology →
-              </a>
-            </div>
-
-            <!-- Placeholder cards — remove when real posts exist -->
-            <div class="article-card" style="opacity:0.35;">
-              <div class="article-meta">
-                <span class="article-cat">Case Study</span>
-                <span class="article-date">Coming soon</span>
-              </div>
-              <h3>The 3-Step Recovery Plan for LLM Visibility</h3>
-              <p>The three technical quick wins that 98% of brands ignore — used by the 0.7% who rank in AI answers.</p>
-            </div>
-
-            <div class="article-card" style="opacity:0.35;">
-              <div class="article-meta">
-                <span class="article-cat">Research</span>
-                <span class="article-date">Coming soon</span>
-              </div>
-              <h3>Why Perplexity Cites Differently Than ChatGPT</h3>
-              <p>RAG vs retrieval-augmented generation: the structural differences that determine citation probability per engine.</p>
-            </div>
-          </div>
-
+        <div class="index-main" id="articles-main">
+          <div class="loading">Loading articles...</div>
         </div>
-
-        <!-- Sidebar -->
         <aside>
           <div class="sidebar-tool">
             <div class="sidebar-tool-label">Diagnostic Tool</div>
-            <p style="font-size:12px; color:#64748B; margin-bottom:12px; line-height:1.5;">Check your AI visibility score instantly.</p>
+            <p style="font-size:12px;color:#64748B;margin-bottom:12px;line-height:1.5;">Check your AI visibility score instantly.</p>
             <input type="text" id="scan-url" placeholder="https://yourdomain.com">
             <button onclick="redirectToScan()">Run Free AI Scan</button>
           </div>
-
-          <div style="margin-top:20px; background:#F8FAFC; border:1px solid #E2E8F0; border-radius:8px; padding:16px;">
-            <div class="sidebar-tool-label" style="margin-bottom:8px;">About This Publication</div>
-            <p style="font-size:12px; color:#64748B; line-height:1.55;">Research and strategic analysis on AI search visibility. Published by <a href="https://aiauditscan.com" style="color:#0284C7;">AI Audit Scan</a> — the platform that measures brand visibility across ChatGPT, Gemini, Perplexity and Claude.</p>
+          <div style="margin-top:16px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:16px;">
+            <div class="sidebar-tool-label" style="margin-bottom:8px;">About</div>
+            <p style="font-size:12px;color:#64748B;line-height:1.55;">Research published by <a href="https://aiauditscan.com" style="color:#0284C7;">AI Audit Scan</a> — the platform that measures brand visibility across ChatGPT, Gemini, Perplexity and Claude.</p>
           </div>
         </aside>
       </div>
-
     </div>
 
-    <!-- Article view (hidden on index) -->
+    <!-- Article view -->
     <div id="content-wrapper" style="display:none;">
       <div id="content"></div>
     </div>
 
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="footer-brand">AI Audit <span>Scan</span> Intelligence</div>
-    <div>Research published by <a href="https://aiauditscan.com">aiauditscan.com</a> · © 2026 AI Audit Scan</div>
-    <div style="display:flex; gap:16px;">
+    <div>Research by <a href="https://aiauditscan.com">aiauditscan.com</a> · © 2026 AI Audit Scan</div>
+    <div style="display:flex;gap:16px;">
       <a href="https://aiauditscan.com/pricing">Platform</a>
       <a href="https://aiauditscan.com/terms">Terms</a>
     </div>
   </footer>
 
   <script>
-    // ── Post loader ────────────────────────────────────────────────────────
-    async function loadPost(postName) {
-      const listSection    = document.getElementById('articles-list');
-      const contentWrapper = document.getElementById('content-wrapper');
-      const contentArea    = document.getElementById('content');
-      const backLink       = document.getElementById('back-link');
+  // ── Helpers ────────────────────────────────────────────────────────────────
+  function fmtDate(str) {
+    try {
+      return new Date(str + 'T12:00:00').toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+    } catch { return str; }
+  }
 
-      if (!postName) return;
+  function initial(name) {
+    return (name || 'A').charAt(0).toUpperCase();
+  }
 
-      // Update URL without reload
-      history.pushState({}, '', '?post=' + postName);
+  // ── Build index from posts.json ────────────────────────────────────────────
+  async function buildIndex() {
+    const container = document.getElementById('articles-main');
+    try {
+      const res   = await fetch('posts.json');
+      if (!res.ok) throw new Error('posts.json not found');
+      const posts = await res.json();
 
-      listSection.style.display    = 'none';
-      contentWrapper.style.display = 'block';
-      backLink.style.display       = 'block';
-      contentArea.innerHTML = '<div class="loading">Loading analysis...</div>';
+      // Sort by date descending
+      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-      try {
-        const response = await fetch(`_posts/${postName}.md`);
-        if (!response.ok) throw new Error('not found');
-        const markdown = await response.text();
+      const featured    = posts.find(p => p.featured) || posts[0];
+      const secondaries = posts.filter(p => p !== featured);
 
-        // Strip frontmatter
-        const clean = markdown.replace(/^---[\s\S]+?---\n?/, '').trim();
-        const html  = marked.parse(clean);
+      let html = '';
 
-        // Extract author from frontmatter for byline
-        const authorMatch = markdown.match(/^author:\s*"?([^"\n]+)"?/m);
-        const dateMatch   = markdown.match(/^date:\s*([^\n]+)/m);
-        const catMatch    = markdown.match(/^category:\s*"?([^"\n]+)"?/m);
-        const titleMatch  = markdown.match(/^title:\s*"?([^"\n]+)"?/m);
-
-        const author   = authorMatch ? authorMatch[1].trim() : 'AI Audit Scan';
-        const date     = dateMatch   ? new Date(dateMatch[1].trim()).toLocaleDateString('en-US', {year:'numeric', month:'long', day:'numeric'}) : '';
-        const category = catMatch    ? catMatch[1].trim() : '';
-        const title    = titleMatch  ? titleMatch[1].trim() : '';
-
-        contentArea.innerHTML = `
-          <article class="post">
-            <div class="post-meta">
-              ${category ? `<span class="article-cat">${category}</span>` : ''}
-              ${date ? `<span class="article-date">${date}</span>` : ''}
+      // Featured article
+      if (featured) {
+        html += `
+          <div class="article-featured">
+            <div class="article-featured-img" style="${featured.image ? '' : 'display:flex;align-items:center;justify-content:center;'}">
+              ${featured.image
+                ? `<img src="${featured.image}" alt="${featured.title}" onerror="this.parentElement.style.background='#0A1628';this.style.display='none'">`
+                : `<div style="font-family:serif;font-size:32px;font-weight:900;color:rgba(255,255,255,0.15);text-align:center;padding:20px;">AI<br>AUDIT<br>SCAN</div>`}
             </div>
-            ${title ? `<h1>${title}</h1>` : ''}
-            <div class="post-byline">
-              <div class="article-author-dot">${author.charAt(0)}</div>
-              <span>By <strong>${author}</strong> · Strategic Insights @ AI Audit Scan</span>
-            </div>
-            ${html}
-            <div class="post-footer">
-              <div class="post-author-block">
-                <div class="post-author-avatar">${author.charAt(0)}</div>
-                <div>
-                  <div class="post-author-name">${author}</div>
-                  <div class="post-author-role">Strategic Insights · AI Audit Scan</div>
-                </div>
+            <div class="article-featured-body">
+              <div class="article-meta">
+                <span class="article-cat">${featured.category || 'Research'}</span>
+                <span class="article-date">${fmtDate(featured.date)}</span>
               </div>
-              <a href="https://aiauditscan.com/register" style="font-size:11px; font-weight:800; color:#0284C7; text-decoration:none;">
-                Run a Free AI Scan →
+              <h2 onclick="loadPost('${featured.slug}')">${featured.title}</h2>
+              <p>${featured.description}</p>
+              <div class="article-author">
+                <div class="article-author-dot">${initial(featured.author)}</div>
+                ${featured.author} — Strategic Insights @ AI Audit Scan
+              </div>
+              <a href="?post=${featured.slug}" class="read-link"
+                onclick="loadPost('${featured.slug}'); return false;">
+                Read full analysis →
               </a>
             </div>
-          </article>
-        `;
-      } catch (e) {
-        contentArea.innerHTML = `
-          <article class="post">
-            <h1>Analysis Not Found</h1>
-            <p>This intelligence file has been moved or is not yet published.</p>
-            <a href="index.html" class="back-link">← Back to Intelligence</a>
-          </article>
-        `;
+          </div>`;
       }
-    }
 
-    // ── Scan redirect ──────────────────────────────────────────────────────
-    function redirectToScan() {
-      const url = document.getElementById('scan-url').value.trim();
-      if (url) {
-        window.location.href = 'https://aiauditscan.com/register/?url=' + encodeURIComponent(url);
+      // Secondary articles grid
+      if (secondaries.length > 0) {
+        html += `<div class="articles-grid">`;
+        secondaries.forEach(p => {
+          html += `
+            <div class="article-card">
+              <div class="article-meta">
+                <span class="article-cat">${p.category || 'Research'}</span>
+                <span class="article-date">${fmtDate(p.date)}</span>
+              </div>
+              <h3 onclick="loadPost('${p.slug}')">${p.title}</h3>
+              <p>${p.description}</p>
+              <a href="?post=${p.slug}" class="read-link" style="font-size:11px;"
+                onclick="loadPost('${p.slug}'); return false;">
+                Read analysis →
+              </a>
+            </div>`;
+        });
+        html += `</div>`;
       }
+
+      if (!featured && posts.length === 0) {
+        html = '<p style="color:#64748B;padding:32px 0;">No articles published yet.</p>';
+      }
+
+      container.innerHTML = html;
+
+    } catch (e) {
+      container.innerHTML = `<p style="color:#DC2626;font-size:13px;padding:24px 0;">
+        Could not load articles — make sure posts.json exists in the root directory.<br>
+        <span style="color:#64748B;font-size:11px;">${e.message}</span>
+      </p>`;
     }
+  }
 
-    // Enter key on scan input
-    document.getElementById('scan-url').addEventListener('keydown', e => {
-      if (e.key === 'Enter') redirectToScan();
-    });
+  // ── Load article from markdown ─────────────────────────────────────────────
+  async function loadPost(slug) {
+    const listSection    = document.getElementById('articles-list');
+    const contentWrapper = document.getElementById('content-wrapper');
+    const contentArea    = document.getElementById('content');
+    const backLink       = document.getElementById('back-link');
 
-    // ── Auto-load from URL ─────────────────────────────────────────────────
+    history.pushState({}, '', '?post=' + slug);
+
+    listSection.style.display    = 'none';
+    contentWrapper.style.display = 'block';
+    backLink.style.display       = 'block';
+    contentArea.innerHTML        = '<div class="loading">Loading analysis...</div>';
+
+    try {
+      const res = await fetch(`_posts/${slug}.md`);
+      if (!res.ok) throw new Error(`File not found: _posts/${slug}.md`);
+      const markdown = await res.text();
+
+      // Extract frontmatter fields
+      const fm = {};
+      const fmMatch = markdown.match(/^---\n([\s\S]+?)\n---/);
+      if (fmMatch) {
+        fmMatch[1].split('\n').forEach(line => {
+          const m = line.match(/^(\w+):\s*"?([^"]+)"?\s*$/);
+          if (m) fm[m[1]] = m[2].trim();
+        });
+      }
+
+      const title  = fm.title  || slug;
+      const author = fm.author || 'AI Audit Scan';
+      const date   = fm.date   ? fmtDate(fm.date) : '';
+      const cat    = fm.category || '';
+
+      // Strip frontmatter and parse markdown
+      const clean = markdown.replace(/^---[\s\S]+?---\n?/, '').trim();
+      const html  = marked.parse(clean);
+
+      contentArea.innerHTML = `
+        <article class="post">
+          <div class="post-meta">
+            ${cat  ? `<span class="article-cat">${cat}</span>` : ''}
+            ${date ? `<span class="article-date">${date}</span>` : ''}
+          </div>
+          <h1>${title}</h1>
+          <div class="post-byline">
+            <div class="article-author-dot">${initial(author)}</div>
+            <span>By <strong>${author}</strong> · Strategic Insights @ AI Audit Scan</span>
+          </div>
+          ${html}
+          <div class="post-footer">
+            <div class="post-author-block">
+              <div class="post-author-avatar">${initial(author)}</div>
+              <div>
+                <div class="post-author-name">${author}</div>
+                <div class="post-author-role">Strategic Insights · AI Audit Scan</div>
+              </div>
+            </div>
+            <a href="https://aiauditscan.com/register"
+              style="font-size:11px;font-weight:800;color:#0284C7;text-decoration:none;">
+              Run a Free AI Scan →
+            </a>
+          </div>
+        </article>`;
+
+    } catch (e) {
+      contentArea.innerHTML = `
+        <article class="post">
+          <h1>Analysis Not Found</h1>
+          <p>This file could not be loaded: <code>${slug}.md</code></p>
+          <p style="color:#64748B;font-size:13px;">${e.message}</p>
+        </article>`;
+    }
+  }
+
+  // ── Back button ─────────────────────────────────────────────────────────────
+  window.addEventListener('popstate', () => {
     const params = new URLSearchParams(window.location.search);
-    const postParam = params.get('post');
-    if (postParam) loadPost(postParam);
+    if (!params.get('post')) {
+      document.getElementById('articles-list').style.display    = 'block';
+      document.getElementById('content-wrapper').style.display  = 'none';
+      document.getElementById('back-link').style.display        = 'none';
+    }
+  });
+
+  // ── Scan redirect ────────────────────────────────────────────────────────────
+  function redirectToScan() {
+    const url = document.getElementById('scan-url').value.trim();
+    if (url) window.location.href = 'https://aiauditscan.com/register/?url=' + encodeURIComponent(url);
+  }
+  document.getElementById('scan-url').addEventListener('keydown', e => {
+    if (e.key === 'Enter') redirectToScan();
+  });
+
+  // ── Init ────────────────────────────────────────────────────────────────────
+  const params = new URLSearchParams(window.location.search);
+  const postParam = params.get('post');
+  if (postParam) {
+    loadPost(postParam);
+  } else {
+    buildIndex();
+  }
   </script>
 
 </body>
